@@ -4,8 +4,8 @@ module Categories
       @loadAllCategoriesRepository = loadAllCategoriesRepository
     end
 
-    def load_all
-      @loadAllCategoriesRepository.load_all
+    def execute
+      @loadAllCategoriesRepository.query
     end
   end
 end

@@ -1,6 +1,6 @@
 module Categories
   class LoadCategoryByIdRepository
-    def find_by_id(id)
+    def query(id)
       Category.find(id)
     end
   end

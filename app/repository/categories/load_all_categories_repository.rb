@@ -1,6 +1,6 @@
 module Categories
   class LoadAllCategoriesRepository
-    def load_all
+    def query
       Category.all
     end
   end

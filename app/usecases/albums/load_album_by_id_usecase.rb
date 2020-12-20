@@ -4,8 +4,8 @@ module Albums
       @loadAlbumByIdRepository = loadAlbumByIdRepository
     end
 
-    def find_album_by_id id
-      @loadAlbumByIdRepository.find_by_id(id)
+    def execute(id)
+      @loadAlbumByIdRepository.query(id)
     end
   end
 end

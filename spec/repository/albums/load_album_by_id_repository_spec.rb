@@ -10,7 +10,7 @@ RSpec.describe Albums::LoadAlbumByIdRepository do
     expect(Album).to receive(:find).with(an_instance_of(Integer))
 
     loadAlbumByIdRepository = Albums::LoadAlbumByIdRepository.new
-    loadAlbumByIdRepository.find_by_id(10)
+    loadAlbumByIdRepository.query(10)
   end
 
   it "check return album" do
@@ -19,7 +19,7 @@ RSpec.describe Albums::LoadAlbumByIdRepository do
       .and_return(@album)
 
     loadAlbumByIdRepository = Albums::LoadAlbumByIdRepository.new
-    response = loadAlbumByIdRepository.find_by_id(10)
+    response = loadAlbumByIdRepository.query(10)
     expect(response).to be_truthy
   end
 
@@ -29,6 +29,6 @@ RSpec.describe Albums::LoadAlbumByIdRepository do
       .and_raise(ActiveRecord::RecordNotFound)
 
       loadAlbumByIdRepository = Albums::LoadAlbumByIdRepository.new
-      expect{ loadAlbumByIdRepository.find_by_id(10) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect{ loadAlbumByIdRepository.query(10) }.to raise_error(ActiveRecord::RecordNotFound)
   end
 end

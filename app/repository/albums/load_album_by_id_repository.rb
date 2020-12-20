@@ -1,6 +1,6 @@
 module Albums
   class LoadAlbumByIdRepository
-    def find_by_id id 
+    def query(id) 
       Album.find(id)
     end
   end

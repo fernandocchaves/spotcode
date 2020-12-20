@@ -1,13 +1,12 @@
 class Api::V1::FavoritesController < ApplicationController
   def index
-    @favorite_albums = current_user.favorites.where(favoritable_type: "Album").map(&:favoritable)
-    @favorite_songs = current_user.favorites.where(favoritable_type: "Song").map(&:favoritable)
-    @favorite_artists = current_user.favorites.where(favoritable_type: "Artist").map(&:favoritable)
+    @favorite_albums = favoriteService.find_user_favorites_by_type(current_user, "Album")
+    @favorite_songs = favoriteService.find_user_favorites_by_type(current_user, "Song")
+    @favorite_artists = favoriteService.find_user_favorites_by_type(current_user, "Artist")
   end
 
   def create
-    @favoritable = current_user.favorites.new(favoritable_type: params[:favoritable_type], favoritable_id: params[:id])
-    @favoritable.save
+    favoriteService.create_user_favorit_by_type(current_user, params[:favoritable_type], params[:id])
     head :ok
   end
 
@@ -15,5 +14,9 @@ class Api::V1::FavoritesController < ApplicationController
     @favoritable = current_user.favorites.find_by(favoritable_type: params[:favoritable_type], favoritable_id: params[:id])
     @favoritable.destroy
     head :ok
+  end
+
+  def favoriteService
+    FavoriteService.new
   end
 end

@@ -5,8 +5,8 @@ module Categories
       @loadCategoryByIdRepository = loadCategoryByIdRepository
     end
 
-    def find_category_by_id(id)
-      @loadCategoryByIdRepository.find_by_id(id)
+    def execute(id)
+      @loadCategoryByIdRepository.query(id)
     end
   end
 end
